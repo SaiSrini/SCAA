@@ -1,0 +1,29 @@
+
+public class LDAMain {
+
+	
+	int trainSize;
+	
+	int testSize;
+	
+	public static void main(String args[]){
+		
+		//
+		// Used to estimates training topic assignments  
+		//
+		LDAEstimator est = new LDAEstimator();
+		est.Estimate();
+		
+		//
+		// Performs inference on test model
+		//
+		LDAInferencer inf = new LDAInferencer(est.trainModel);
+		inf.inference();
+		
+		
+	}
+	
+	public void computeHellingerDistance(){
+		
+	}
+}

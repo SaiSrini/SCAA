@@ -1,0 +1,12 @@
+
+public class LDAMain {
+
+	public static void main(String args[]){
+		
+		//
+		// Used to estimates training topic assignemnts  
+		//
+		LDAEstimator est = new LDAEstimator();
+		est.Estimate();
+	}
+}
