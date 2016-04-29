@@ -1,0 +1,13 @@
+
+public class LDAModel {
+
+	/*
+	 * Model for LDA
+	 * Contains all relevant information about the current run
+	 */
+	
+	// No.of Documents
+	public int M;
+	public int V;
+	public int K;
+}

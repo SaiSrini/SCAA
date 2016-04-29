@@ -1,0 +1,43 @@
+import java.util.Vector;
+
+public class LDAModel {
+
+	/*
+	 * Model for LDA
+	 * Contains all relevant information about the current run
+	 */
+	
+	// No.of Documents
+	public int M;
+	// Vocabulary Size
+	public int V;
+	// Number of topics
+	public int K;
+	
+	//hyper-parameters for smoothing
+	public double alpha, beta;
+	
+	//number of iterations to be run
+	public int numIters;
+	
+	// lda parameters to be estimated
+	// theta - (document topic distribution : size M * K)
+	public double[][] theta;
+	// phi - (topic word distribution : size K * V)
+	public double phi;
+
+
+	// the main model variables used for each gibbs sampling
+	public Vector<Integer>[] currentTopicAss;
+	// nw[i][j] : size V * K : denotes number of times word i is assigned topic j 
+	public int[][] nw;
+	// nd[i][j] : size M * K : denotes number of words in document i assigned to topic j
+	public int[][] nd;
+	// nwSum[j] : size K : total number of words assigned to topic j
+	public int[] nwSum;
+	// ndSum : size M : total number of words in document
+	public int[] ndSum;
+	
+	
+	
+}

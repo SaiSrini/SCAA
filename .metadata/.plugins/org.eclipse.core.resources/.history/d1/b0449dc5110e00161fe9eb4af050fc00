@@ -1,0 +1,83 @@
+
+public class Inferencer {
+
+	//trainModel itself contains a dictionary
+	public LDATrainModel trainModel;
+	
+	//test model => also has same dictionary as train model
+	public LDATestModel testModel;
+	
+	public int noOfIters;
+	/*-------------------------------------------------------------*/
+	// Constructor
+	/*-------------------------------------------------------------*/
+
+	public Inferencer(LDATrainModel trainModel){
+		
+		this.trainModel = trainModel;
+	}
+	
+	/*-------------------------------------------------------------*/
+	// Inference methods
+	/*-------------------------------------------------------------*/
+
+	public void inference(){
+		
+		//creates test model
+		testModel = new LDATestModel();
+		//init model initializes the model and also loads test data
+		testModel.initModel(trainModel.data.localDict);
+		
+		//If any configuration file... set here
+		
+		noOfIters = testModel.numIters;
+		System.out.println("Performing Gibbs Sampling with " + testModel.numIters + "iterations\n");
+		
+		int iter,docIter,wordIter;
+		for(iter=0; iter<noOfIters; iter++){
+			
+			//for each iteration - update topics of all words in all documents
+			for(docIter=0; docIter < testModel.M; docIter++){
+				
+				for(wordIter=0; wordIter < testModel.data.docs[docIter].length; wordIter++){
+					
+					int topic = infSamping(docIter, wordIter);
+					testModel.currentTopicAss[docIter].set(wordIter, topic);
+					
+				}//end for each word
+				
+			}//end for each document
+		
+		}//end iterations
+		
+		//gibbs sampling is complete
+		//compute the theta and phi of lda
+		computeTestTheta();
+		computeTestPhi();
+		
+	}
+	
+	public int infSamping(int m, int n){
+		
+		//m_th document and n_th word
+		//remove current z_i(topic assignment) from count variables
+		int topic = testModel.currentTopicAss[m].get(n);
+		int w = testModel.data.docs[m].words[n];
+		
+		testModel.nw[w][topic] -= 1;
+		testModel.nd[m][topic] -= 1;
+		testModel.nwSum[topic] -= 1;
+		testModel.ndSum[m] -= 1;
+		
+		//smoothing parameters
+		double Vbeta = trainModel.V * testModel.beta;
+		double Kalpha = trainModel.K * testModel.alpha;
+		
+		//now sampling the topic for this word
+		for(int k = 0; k < testModel.K; k++){
+			
+		}
+		
+	}
+
+}

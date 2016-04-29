@@ -1,0 +1,25 @@
+
+public class LatentDirichletAllocation {
+
+	/* Parameters :
+	 * 
+	 * Input:
+	 * 
+	 * Number of Features 
+	 * Alpha-Smoother
+	 * Beta-Smoother
+	 * 
+	 * Output:
+	 * 
+	 * Topic-document probability vector
+	 * (optional per-topic word distribution)
+	 * 
+	 */
+	
+	int noOfFeatures;
+	int aphaSmmother;
+	int betaSmoother;
+	
+	
+	
+}

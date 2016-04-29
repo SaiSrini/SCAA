@@ -1,0 +1,16 @@
+
+public class LatentDirichletAllocation {
+
+	/* parameters needed:
+	 * 
+	 * Number of Features 
+	 * Alpha-Smoother
+	 * Beta-Smoother
+	 * 
+	 */
+	
+	int noOfFeatures;
+	int aphaSmmother;
+	int betaSmoother;
+	
+}

@@ -1,0 +1,8 @@
+
+public class Inferencer {
+
+	//trainModel itself contains a dictionary
+	public LDATrainModel trainModel;
+	
+	
+}

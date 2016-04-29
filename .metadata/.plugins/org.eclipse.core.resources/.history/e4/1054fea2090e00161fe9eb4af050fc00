@@ -1,0 +1,11 @@
+
+public class Inferencer {
+
+	//trainModel itself contains a dictionary
+	public LDATrainModel trainModel;
+	
+	//test model => also has same dict as train model
+	public LDATestModel testModel;
+	
+	
+}

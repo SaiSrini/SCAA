@@ -1,0 +1,54 @@
+
+public class Inferencer {
+
+	//trainModel itself contains a dictionary
+	public LDATrainModel trainModel;
+	
+	//test model => also has same dictionary as train model
+	public LDATestModel testModel;
+	
+	public int noOfIters;
+	/*-------------------------------------------------------------*/
+	// Constructor
+	/*-------------------------------------------------------------*/
+
+	public Inferencer(LDATrainModel trainModel){
+		
+		this.trainModel = trainModel;
+	}
+	
+	/*-------------------------------------------------------------*/
+	// Inference methods
+	/*-------------------------------------------------------------*/
+
+	public void inference(){
+		
+		//creates test model
+		testModel = new LDATestModel();
+		//init model initializes the model and also loads test data
+		testModel.initModel(trainModel.data.localDict);
+		
+		//If any configuration file... set here
+		
+		noOfIters = testModel.numIters;
+		System.out.println("Performing Gibbs Sampling with " + testModel.numIters + "iterations\n");
+		
+		int iter,docIter,wordIter;
+		for(iter=0; iter<noOfIters; iter++){
+			
+			//for each iteration - update topics of all words in all documents
+			for(docIter=0; docIter < testModel.M; docIter++){
+				
+				for(wordIter=0; wordIter < testModel.data.docs[docIter].length; wordIter++){
+					
+					int topic = infSamping(docIter, wordIter);
+					testModel.currentTopicAss[docIter].set(wordIter, topic);
+					
+				}//end for each word
+				
+			}//end for each document
+		
+		}//end iterations
+	}
+
+}

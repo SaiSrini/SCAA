@@ -1,0 +1,33 @@
+
+public class Inferencer {
+
+	//trainModel itself contains a dictionary
+	public LDATrainModel trainModel;
+	
+	//test model => also has same dictionary as train model
+	public LDATestModel testModel;
+	
+	/*-------------------------------------------------------------*/
+	// Constructor
+	/*-------------------------------------------------------------*/
+
+	public Inferencer(LDATrainModel trainModel){
+		
+		this.trainModel = trainModel;
+	}
+	
+	/*-------------------------------------------------------------*/
+	// Inference methods
+	/*-------------------------------------------------------------*/
+
+	public void inference(){
+		
+		//creates test model
+		testModel = new LDATestModel();
+		//init model initializes the model and also loads test data
+		testModel.initModel(trainModel.data.localDict);
+		
+		System.out.println("Performing Gibbs Sampling with " + "iterations\n");
+	}
+
+}

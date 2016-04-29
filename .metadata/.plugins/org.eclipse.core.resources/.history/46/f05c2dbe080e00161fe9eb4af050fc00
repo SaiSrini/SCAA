@@ -1,0 +1,6 @@
+
+public class Inferencer {
+
+	public LDAModel trainModel;
+	public 
+}

@@ -1,0 +1,6 @@
+
+public class LDAData {
+
+	int M;
+	int V;
+}
